@@ -29,6 +29,8 @@ The test framework is organized as follows:
 The tests are separated into files based on the application's functionality they cover. For example:
 - `create_computer.cy.ts`: Tests related to the Create Computer screen.
 - `edit_delete_computer.cy.ts`: Tests related to Editing and Deleting Computers.
+- Two tests are left failing on purpose due to the bug on page 
+
 
 ### Pages
 
