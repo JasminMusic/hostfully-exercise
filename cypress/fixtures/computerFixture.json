@@ -1,0 +1,6 @@
+{
+  "appleCompany": "Apple Inc.",
+  "requiredErrorMessage": "Failed to refine type : Predicate isEmpty() did not fail.",
+  "wrongDateFormat": "10-12-1999",
+  "wrongDateErrorMessage": "Failed to decode date : java.time.format.DateTimeParseException: Text '10-12-1999' could not be parsed at index 0"
+}
