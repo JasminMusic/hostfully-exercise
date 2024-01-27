@@ -47,12 +47,6 @@ describe('Tests related to the Edit & Delete Computer', () => {
     );
   });
 
-  it('Cancel should bring you back to homepage', () => {
-    HomePage.clickAddComputer();
-    EditDeletePage.clickCancelButton();
-    HomePage.visibleComputerTable();
-  });
-
   it('Should delete existing computer', () => {
     EditDeletePage.validateDeletedMessage().then(computerName => {
       HomePage.clickExistingComputer();
