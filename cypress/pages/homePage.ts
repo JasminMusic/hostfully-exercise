@@ -4,6 +4,7 @@ interface HomePageElements {
   computerFilterApplyButton: string;
   computerTable: string;
   existingComputer: string;
+  firstComputer: string;
 }
 
 class HomePage {
@@ -13,6 +14,7 @@ class HomePage {
     computerFilterApplyButton: '#searchsubmit',
     computerTable: 'table[class="computers zebra-striped"]',
     existingComputer: 'table.computers a[href*="/computers/381"]',
+    firstComputer: 'tbody > :nth-child(1) > :nth-child(1)',
   };
 
   validateDeletedMessage(): Cypress.Chainable<string> {
@@ -33,16 +35,24 @@ class HomePage {
     cy.get(this.elements.existingComputer).click();
   }
 
-  visibleComputerTable(): void {
-    cy.get(this.elements.computerTable).should('be.visible');
-  }
-
   clickOnComputerFilterButton(): void {
     cy.get(this.elements.computerFilterApplyButton).click();
   }
 
   typeInFilter(text: string): void {
     cy.get(this.elements.computerFilter).type(text);
+  }
+
+  visibleComputerTable(): void {
+    cy.get(this.elements.computerTable).should('be.visible');
+  }
+
+  checkIfComputerExists(computerName: string): void {
+    cy.get(this.elements.computerTable).should('contain', computerName);
+  }
+
+  checkIfComputerIsDeleted(computerName: string): void {
+    cy.get(this.elements.firstComputer).should('not.have.text', computerName);
   }
 }
 

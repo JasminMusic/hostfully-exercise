@@ -1,5 +1,5 @@
 import HomePage from 'cypress/pages/homePage';
-import CreateComputerPage from 'cypress/pages/ComputerPage';
+import CreateComputerPage from '../pages/computerPage';
 import * as computerFixture from '../fixtures/computerFixture.json';
 import {
   customFormatDate,
@@ -27,6 +27,25 @@ describe('Tests related to the Create Computer screen', () => {
     CreateComputerPage.validateMessage(
       `Done !  Computer ${randomComputerName} has been created`
     );
+  });
+
+  it('Added computer is shown in the list', () => {
+    HomePage.clickAddComputer();
+    CreateComputerPage.inputComputerName(randomComputerName);
+    CreateComputerPage.inputIntroduced(
+      customFormatDate(introducedDate.toString())
+    );
+    CreateComputerPage.inputDiscontinued(
+      customFormatDate(discontinuedDate.toString())
+    );
+    CreateComputerPage.selectCompany(computerFixture.appleCompany);
+    CreateComputerPage.clickCreateComputer();
+    CreateComputerPage.validateMessage(
+      `Done !  Computer ${randomComputerName} has been created`
+    );
+    HomePage.typeInFilter(randomComputerName);
+    HomePage.clickOnComputerFilterButton();
+    HomePage.checkIfComputerExists(randomComputerName);
   });
 
   it('Negative test - Required fields are not populated', () => {

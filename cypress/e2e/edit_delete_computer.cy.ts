@@ -1,5 +1,5 @@
 import EditDeletePage from '../pages/computerPage';
-import HomePage from 'cypress/pages/homePage';
+import HomePage from '../pages/homePage';
 import * as computerFixture from '../fixtures/computerFixture.json';
 import {
   customFormatDate,
@@ -61,5 +61,18 @@ describe('Tests related to the Edit & Delete Computer', () => {
         `Done !  Computer ${computerName} has been deleted`
       );
     });
+  });
+
+  it.only('Should delete existing computer and they should not appear on table', () => {
+    EditDeletePage.validateDeletedMessage().then(computerName => {
+      HomePage.clickExistingComputer();
+      EditDeletePage.clickDeleteComputerButton();
+      EditDeletePage.validateMessage(
+        `Done !  Computer ${computerName} has been deleted`
+      );
+    });
+    HomePage.typeInFilter(computerFixture.firstComputer);
+    HomePage.clickOnComputerFilterButton();
+    HomePage.checkIfComputerIsDeleted(computerFixture.firstComputer);
   });
 });
