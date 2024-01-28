@@ -57,7 +57,7 @@ describe('Tests related to the Edit & Delete Computer', () => {
     });
   });
 
-  it.only('Should delete existing computer and they should not appear on table', () => {
+  it('Should delete existing computer and they should not appear on table', () => {
     EditDeletePage.validateDeletedMessage().then(computerName => {
       HomePage.clickExistingComputer();
       EditDeletePage.clickDeleteComputerButton();
